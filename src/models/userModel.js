@@ -18,12 +18,20 @@ const userSchema = new mongoose.Schema({
   },
   fingerprintHash: {
     type: String,
-    require: true
+    require: true,
   },
   onlyForTesting: {
     type: String,
     require: true,
   },
+  walletBalance: { 
+    type: Number, 
+    default: 0 
+  },
+  bank: {
+    accountNumber: String,
+    bankName: String,
+  }
 });
 
 const User = mongoose.model("User", userSchema);

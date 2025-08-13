@@ -10,7 +10,8 @@ exports.enrollUser = async (req, res) => {
       .json({ error: "userId and fingerprintTemplate are required" });
   }
 
-  const encryptedTemplate = fingerprintService.encryptTemplate(fingerprintTemplate);
+  const encryptedTemplate =
+    fingerprintService.encryptTemplate(fingerprintTemplate);
   const fingerprintHash = fingerprintService.hashTemplate(fingerprintTemplate);
 
   const token = tokenService.generateDummyToken();
@@ -24,6 +25,7 @@ exports.enrollUser = async (req, res) => {
       onlyForTesting: fingerprintTemplate,
     });
     await user.save();
+
     res.json({ message: "Enrollment successful", token });
   } catch (err) {
     if (err.code === 11000) {
